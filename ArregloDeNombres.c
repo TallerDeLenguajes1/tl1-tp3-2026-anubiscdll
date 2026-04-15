@@ -77,6 +77,7 @@ int BuscarNombrePorPalabra(char** V, char* nombre) {
     }
     return -1;
 }
+
 void BuscarNombrePorId(char** V, int ind) {
     if (ind < 0 || ind > 4) {
         puts("no se encontró el valor buscado");
