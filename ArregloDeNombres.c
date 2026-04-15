@@ -3,7 +3,8 @@
 #include <string.h>
 
 void MostrarPersonas(char** V);
-int BuscarNombre(char** V, char* nombre);
+int BuscarNombrePorPalabra(char** V, char* nombre);
+void BuscarNombrePorId(char** V, int ind);
 int main() {
     char* buff = (char*)malloc(50 * sizeof(char));
     char* vector[5];
@@ -15,9 +16,14 @@ int main() {
         strcpy(vector[i], buff);
     }
     MostrarPersonas(vector);
+
+    puts("Ingrese un numero del 0 al 4 para buscar el nombre: ");
+    int num;
+    scanf("%d", &num);
+    BuscarNombrePorId(vector, num);
     puts("Ingrese un nombre a buscar: ");
     gets(buff);
-    int busc = BuscarNombre(vector, buff);
+    int busc = BuscarNombrePorPalabra(vector, buff);
     if (busc == -1) {
         puts("No se encontro el nombre");
     } else {
@@ -37,11 +43,19 @@ void MostrarPersonas(char** V) {
     }
 }
 
-int BuscarNombre(char** V, char* nombre) {
+int BuscarNombrePorPalabra(char** V, char* nombre) {
     for (int i = 0; i < 5; i++) {
         if (strstr(V[i], nombre)) {
             return i;
         }
     }
     return -1;
+}
+void BuscarNombrePorId(char** V, int ind) {
+    if (ind < 0 || ind > 4) {
+        puts("no se encontró el valor buscado");
+    } else {
+        puts("El nombre en la posicion buscada es: ");
+        printf(" %s\n", V[ind]);
+    }
 }
